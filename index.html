@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Template</title>
+    <style>
+      #root{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+      .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        border-radius: 5px;
+        padding: 20px;
+        margin: 10px;
+        background-color: #78560ba7;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        height: 100px;
+        width: 200px;
+        color: white;
+      }
+      .greeting {
+        color: red;
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .name {
+        color: rgb(224, 24, 111);
+        font-size: 16px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+
+      let card = [
+          { greeting: "Happy Birthday", name: "Henry Cavil" },
+          { greeting: "Merry Christmas", name: "William Smith" },
+          { greeting: "Congratulations", name: "Adrian Monk" }
+        ]
+        
+      // GreetingCard component
+      function GreetingCard({ greeting, name }) {
+        return (
+          <div className="card">
+            <div className="greeting">{greeting}</div>
+            <div className="name">{name}</div>
+          </div>
+        );
+      }
+
+      // App component
+      function App() {
+        const [greetingCards, setGreetingCards] = React.useState(card);
+
+        return (
+          <div>
+            {greetingCards.map((card, index) => (
+              <GreetingCard
+                key={index}
+                greeting={card.greeting}
+                name={card.name}
+              />
+            ))}
+          </div>
+        );
+      }
+
+      // Render the App component
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>
